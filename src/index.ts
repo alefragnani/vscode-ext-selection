@@ -16,6 +16,17 @@ function selectWordAtCursorPosition(editor: TextEditor): boolean {
     return true;            
 }
 
+function selectLines(editor: TextEditor, lines: number[]): Selection[] {
+    editor.selections.shift();
+    const selections = new Array<Selection>();
+    lines.forEach(line => {
+        selections.push(new Selection(line, 0, line, editor.document.lineAt(line).text.length)); 
+    });
+    editor.selections = selections;
+    return editor.selections;
+}
+
 export { 
-    selectWordAtCursorPosition 
+    selectWordAtCursorPosition,
+    selectLines
 };
