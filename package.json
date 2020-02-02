@@ -1,0 +1,32 @@
+{
+  "name": "vscode-ext-selection",
+  "version": "1.0.0",
+  "description": "VS Code Selection helper functions",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vscode",
+    "select",
+    "word",
+    "cursor"
+  ],
+  "author": "Alessandro Fragnani",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alefragnani/vscode-ext-selection.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alefragnani/vscode-ext-selection/issues"
+  },
+  "homepage": "https://github.com/alefragnani/vscode-ext-selection#readme",
+  "devDependencies": {
+    "@types/node": "^10.14.17",
+    "@types/vscode": "^1.41.0",
+    "typescript": "^3.5.1"
+  },
+  "types": "lib/index.d.ts"
+}
