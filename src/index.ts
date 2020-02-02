@@ -11,7 +11,7 @@ function selectWordAtCursorPosition(editor: TextEditor): boolean {
         return false;
     }
 
-    let newSe = new Selection(cursorWordRange.start.line, cursorWordRange.start.character, cursorWordRange.end.line, cursorWordRange.end.character);
+    const newSe = new Selection(cursorWordRange.start.line, cursorWordRange.start.character, cursorWordRange.end.line, cursorWordRange.end.character);
     editor.selection = newSe;
     return true;            
 }
