@@ -26,7 +26,53 @@ function selectLines(editor: TextEditor, lines: number[]): Selection[] {
     return editor.selections;
 }
 
+enum Directions { Forward, Backward }
+
+function expandSelectionToPosition(editor: TextEditor, position: Position, direction: Directions): Selection {
+    let newSelection: Selection;  
+    const actualSelection: Selection = editor.selection;  
+            
+    // no matter 'the previous selection'. going FORWARD will become 'isReversed = FALSE'
+    if (direction === Directions.Forward) {                        
+        if (actualSelection.isEmpty || !actualSelection.isReversed) {
+            newSelection = new Selection(editor.selection.start.line, editor.selection.start.character, 
+                position.line, position.character);
+        } else {
+            newSelection = new Selection(editor.selection.end.line, editor.selection.end.character, 
+                position.line, position.character);
+        }
+    } else { // going BACKWARD will become 'isReversed = TRUE'
+        if (actualSelection.isEmpty || !actualSelection.isReversed) {
+            newSelection = new Selection(editor.selection.start.line, editor.selection.start.character, 
+                position.line, position.character);
+        } else {
+            newSelection = new Selection(editor.selection.end.line, editor.selection.end.character, 
+                position.line, position.character);
+        }
+    }
+    editor.selection = newSelection;
+    return editor.selection;
+}
+
+function shrinkSelectionToPosition(editor: TextEditor, position: Position, direction: Directions): Selection {
+    let newSelection: Selection;   
+            
+    // no matter 'the previous selection'. going FORWARD will become 'isReversed = FALSE'
+    if (direction === Directions.Forward) {    
+        newSelection = new Selection(editor.selection.end.line, editor.selection.end.character, 
+            position.line, position.character);
+    } else { // going BACKWARD , select to line length
+        newSelection = new Selection(editor.selection.start.line, editor.selection.start.character, 
+            position.line, position.character);
+    }
+    editor.selection = newSelection;
+    return editor.selection;
+}      
+
 export { 
     selectWordAtCursorPosition,
-    selectLines
+    selectLines,
+    Directions,
+    expandSelectionToPosition,
+    shrinkSelectionToPosition,
 };
