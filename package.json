@@ -9,9 +9,10 @@
   },
   "keywords": [
     "vscode",
-    "select",
+    "selection",
     "word",
-    "cursor"
+    "line",
+    "range"
   ],
   "author": "Alessandro Fragnani",
   "license": "MIT",
