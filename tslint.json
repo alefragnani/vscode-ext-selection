@@ -12,6 +12,7 @@
 			false
 		],
 		"eofline": false,
+		"no-consecutive-blank-lines":true,
 		"curly": true,
 		"class-name": true,
 		"semicolon": true,
