@@ -4,7 +4,7 @@ This module contains a set of helper functions to work with **text selection** w
 
 ## Installation
 
-`npm install vscode-ext-selection --save-dev`
+`npm install vscode-ext-selection`
 
 ## Usage
 
