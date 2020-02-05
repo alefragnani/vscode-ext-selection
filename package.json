@@ -1,6 +1,6 @@
 {
   "name": "vscode-ext-selection",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "VS Code Selection helper functions",
   "main": "lib/index.js",
   "scripts": {
