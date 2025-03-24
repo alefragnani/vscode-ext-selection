@@ -6,19 +6,25 @@
 import { TextEditor, Selection, Position } from "vscode";
 
 function selectWordAtCursorPosition(editor: TextEditor): boolean {
-    if (!editor.selection.isEmpty) {
-        return true;    
-    }
+    let atLeastOneWordSelected = false;
 
-    const cursorWordRange = editor.document.getWordRangeAtPosition(editor.selection.active);
-    
-    if (!cursorWordRange) {
-        return false;
-    }
+    editor.selections = editor.selections.map(selection => {
+        if (!selection.isEmpty) {
+            atLeastOneWordSelected = true;
+            return selection;
+        }
 
-    const newSe = new Selection(cursorWordRange.start.line, cursorWordRange.start.character, cursorWordRange.end.line, cursorWordRange.end.character);
-    editor.selection = newSe;
-    return true;            
+        const cursorWordRange = editor.document.getWordRangeAtPosition(selection.active);
+
+        if (!cursorWordRange) {
+            return selection;
+        }
+
+        atLeastOneWordSelected = true;
+        return new Selection(cursorWordRange.start.line, cursorWordRange.start.character, cursorWordRange.end.line, cursorWordRange.end.character);
+    });
+
+    return atLeastOneWordSelected;
 }
 
 function selectLines(editor: TextEditor, lines: number[]): Selection[] {
